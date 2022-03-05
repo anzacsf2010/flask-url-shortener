@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{  title }} - {{ subtitle }}</title>
+{% endblock title %}
+
+{% block body %}
+    <div id="url-info">
+        <h5>You can visit your website by clicking on the shortname you created below:</h5>
+        <br>
+        <a href="{{ url_for('redirect_to_url', code=code) }}" target="_blank">
+            {{ code }}
+        </a>
+    </div>
+    <br><br>
+    <p style="text-align: center"><a href="{{ url_for('home') }}"><button class="btn btn-primary">Home</button></a></p>
+{% endblock body %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{  title }} - {{ subtitle }}</title>
+{% endblock title %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h5>Shorten your URL using website link</h5>
+            <form action="your-url" method="post">
+                <label for="url">Website URL</label>
+                <input type="url" name="url" value="" required>
+                <br>
+                <label for="code">Short Name</label>
+                <input type="text" name="code" value="" required>
+                <br>
+                <input type="submit" value="Shorten" class="btn btn-primary">
+            </form>
+        </div>
+        <div class="col">
+            <h5>Shorten your URL by uploading a file</h5>
+            <form action="your-url" method="post" enctype="multipart/form-data">
+                <label for="file">File</label>
+                <input type="file" name="file" value="" required>
+                <br>
+                <label for="code">Short Name</label>
+                <input type="text" name="code" value="" required>
+                <br>
+                <input type="submit" value="Shorten" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+    <br><hr>
+    {% if codes %}
+        <h5>URL short names you have created</h5>
+        <ul>
+            {% for code in codes %}
+                <a href="{{ url_for('redirect_to_url', code=code) }}" target="_blank">
+                    <li>{{ code }}</li>
+                </a>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock body %}
+
